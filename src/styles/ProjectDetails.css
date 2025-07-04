@@ -1,0 +1,78 @@
+/* ProjectDetails.css - Dark Mode Styling */
+
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.project-details-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.project-details-container h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-details-container p {
+  color: #cccccc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-details-container input[type="text"],
+.project-details-container textarea,
+.project-details-container input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+.project-details-container button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.project-details-container button.bg-blue-500 {
+  background-color: #1e88e5;
+}
+
+.project-details-container button.bg-yellow-500 {
+  background-color: #fbc02d;
+}
+
+.project-details-container button.bg-red-600 {
+  background-color: #e53935;
+}
+
+.project-details-container button.bg-gray-400 {
+  background-color: #757575;
+}
+
+.project-details-container .border {
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  border-radius: 6px;
+  color: #ddd;
+}
+
+.project-details-container .mt-6 {
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,71 @@
+/* Register.css - Dark Mode Styling */
+
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.register-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 2rem;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.register-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.register-container form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.register-container form input::placeholder {
+  color: #aaaaaa;
+}
+
+.register-container form button {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.register-container form button:hover {
+  background-color: #2563eb;
+}
+
+.register-container p {
+  margin-top: 1rem;
+  color: #bbbbbb;
+}
+
+.register-container p a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.register-container p a:hover {
+  text-decoration: underline;
+}

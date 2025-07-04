@@ -1,0 +1,87 @@
+/* AddProject.css - Dark Mode */
+
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.add-project-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.add-project-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.add-project-container form input[type="text"],
+.add-project-container form textarea,
+.add-project-container form input[type="email"],
+.add-project-container form input[type="file"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.add-project-container form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.add-project-container .email-list label {
+  font-size: 0.9rem;
+  color: #cccccc;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.add-project-container .add-email-btn {
+  background-color: #444;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.add-project-container .add-email-btn:hover {
+  background-color: #555;
+}
+
+.add-project-container form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.add-project-container form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+.project-details-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin-top: 1rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+

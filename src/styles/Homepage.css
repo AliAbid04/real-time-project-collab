@@ -1,0 +1,73 @@
+/* Homepage.css - Dark Mode Styling */
+
+body {
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.homepage {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #121212;
+}
+
+.homepage-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.homepage-content h1 {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.homepage-content input[type="text"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.homepage-content input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-list a {
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.project-list a:hover {
+  background-color: #272727;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.project-list h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+
+.project-list p {
+  font-size: 0.9rem;
+  color: #cccccc;
+  line-height: 1.4;
+}
