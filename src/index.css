@@ -1,0 +1,11 @@
+/* index.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e1b4b) !important;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #f0f0f0;
+}

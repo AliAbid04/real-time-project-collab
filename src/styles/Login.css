@@ -1,74 +1,92 @@
-/* Login.css - Dark Mode Styling */
+/* Login.css - Frosted Gradient Dark Theme */
 
 body {
-  background-color: #121212;
-  color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
+  line-height: 1.5;
 }
 
 .login-container {
   max-width: 400px;
-  margin: 100px auto;
-  background-color: #1f1f1f;
+  margin: 6rem auto;
+  background: var(--frosted-bg);
+  backdrop-filter: var(--frosted-blur);
+  -webkit-backdrop-filter: var(--frosted-blur);
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .login-container h2 {
-  margin-bottom: 1.5rem;
-  color: #ffffff;
-  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: var(--color-text-primary);
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .login-container form {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
 }
 
 .login-container input[type="email"],
 .login-container input[type="password"] {
-  padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #2a2a2a;
-  color: #ffffff;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  background-color: #232842;
 }
 
 .login-container input::placeholder {
-  color: #aaaaaa;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
 }
 
 .login-container button {
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1rem;
   border: none;
-  border-radius: 8px;
-  background-color: #3b82f6;
+  border-radius: var(--radius-md);
+  background: var(--gradient-main);
   color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .login-container button:hover {
-  background-color: #2563eb;
+  background: var(--gradient-hover);
 }
 
 .login-container p {
-  margin-top: 1rem;
-  color: #cccccc;
+  margin-top: 1.5rem;
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
 }
 
 .login-container a {
-  color: #3b82f6;
+  color: #a78bfa;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .login-container a:hover {
+  color: #c4b5fd;
   text-decoration: underline;
 }

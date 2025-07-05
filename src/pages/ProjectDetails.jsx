@@ -157,6 +157,16 @@ const ProjectDetails = () => {
           >
             Edit
           </button>
+
+          <button
+            onClick={() =>
+              navigate(`/realtime?me=${localStorage.getItem("userId")}`)
+            }
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+          >
+            Go to Chat, Kanban, and Tasks
+          </button>
+
           <button
             onClick={handleDelete}
             className="bg-red-600 text-white px-4 py-2 rounded"
@@ -165,13 +175,6 @@ const ProjectDetails = () => {
           </button>
         </div>
       )}
-
-      <div className="mt-6">
-        <div className="border rounded p-4 mb-4">
-          📊 Project Charts (Coming Soon)
-        </div>
-        <div className="border rounded p-4">📝 Kanban Board (Coming Soon)</div>
-      </div>
     </div>
   );
 };

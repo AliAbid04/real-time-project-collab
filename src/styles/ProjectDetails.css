@@ -1,76 +1,127 @@
-/* ProjectDetails.css - Dark Mode Styling */
+/* ProjectDetails.css - Frosted Gradient Dark Theme */
 
 body {
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .project-details-container {
   max-width: 800px;
-  margin: 40px auto;
+  margin: 3rem auto;
   padding: 2rem;
-  background-color: #1f1f1f;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  background: var(--frosted-bg);
+  backdrop-filter: var(--frosted-blur);
+  -webkit-backdrop-filter: var(--frosted-blur);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
 }
 
 .project-details-container h2 {
-  color: #ffffff;
+  color: var(--color-text-primary);
   font-size: 2rem;
-  margin-bottom: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
 .project-details-container p {
-  color: #cccccc;
+  color: var(--color-text-secondary);
   font-size: 1rem;
   margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 .project-details-container input[type="text"],
 .project-details-container textarea,
 .project-details-container input[type="file"] {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 6px;
-  color: #ffffff;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.project-details-container input:focus,
+.project-details-container textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background-color: #232842;
+}
+
+.project-details-container textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
 .project-details-container button {
-  margin: 10px;
-  padding: 10px 20px;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 1rem;
   cursor: pointer;
-  font-weight: bold;
+  transition: background 0.3s ease;
+  color: #ffffff;
 }
 
+/* Action Buttons */
 .project-details-container button.bg-blue-500 {
-  background-color: #1e88e5;
+  background-color: #6366f1;
+}
+
+.project-details-container button.bg-blue-500:hover {
+  background-color: #4f46e5;
+}
+
+.project-details-container button.bg-blue-600 {
+  background-color: #4338ca;
+}
+
+.project-details-container button.bg-blue-600:hover {
+  background-color: #3730a3;
 }
 
 .project-details-container button.bg-yellow-500 {
-  background-color: #fbc02d;
+  background-color: #eab308;
+  color: #111;
+}
+
+.project-details-container button.bg-yellow-500:hover {
+  background-color: #ca8a04;
 }
 
 .project-details-container button.bg-red-600 {
-  background-color: #e53935;
+  background-color: #ef4444;
+}
+
+.project-details-container button.bg-red-600:hover {
+  background-color: #dc2626;
 }
 
 .project-details-container button.bg-gray-400 {
-  background-color: #757575;
+  background-color: #9ca3af;
+  color: #111;
 }
 
+.project-details-container button.bg-gray-400:hover {
+  background-color: #6b7280;
+}
+
+/* Utility classes */
 .project-details-container .border {
-  border: 1px solid #444;
-  background-color: #2a2a2a;
-  border-radius: 6px;
-  color: #ddd;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  padding: 1rem;
 }
 
 .project-details-container .mt-6 {

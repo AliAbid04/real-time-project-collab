@@ -1,10 +1,15 @@
+/* Navbar.css - Frosted Gradient Dark Theme */
+
 .navbar {
-  background-color: #4f46e5;
-  color: white;
-  padding: 10px 0;
+  background: var(--gradient-main);
+  color: var(--color-text-primary);
+  padding: 0.8rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: var(--frosted-blur);
+  -webkit-backdrop-filter: var(--frosted-blur);
+  box-shadow: var(--shadow-md);
 }
 
 .navbar-container {
@@ -13,65 +18,72 @@
   justify-content: space-between;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.5rem;
 }
 
 .navbar-logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
   text-decoration: none;
 }
 
 .navbar-links {
   display: flex;
-  gap: 20px;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .navbar-links a {
   text-decoration: none;
-  color: white;
+  color: var(--color-text-primary);
   font-weight: 500;
+  font-size: 1rem;
   transition: color 0.2s ease-in-out;
 }
 
 .navbar-links a:hover {
-  color: #dcdcdc;
+  color: #a5b4fc;
 }
 
 .logout-btn {
   background: transparent;
-  border: 1px solid white;
-  padding: 6px 12px;
-  color: white;
+  border: 1px solid #a78bfa;
+  padding: 0.4rem 0.8rem;
+  color: #a78bfa;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .logout-btn:hover {
-  background-color: white;
-  color: #4f46e5;
+  background: #a78bfa;
+  color: #0e0e10;
 }
 
 /* Hamburger icon */
 .menu-icon {
   display: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
+  color: var(--color-text-primary);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .navbar-links {
     position: absolute;
-    top: 60px;
+    top: 64px;
     right: 0;
-    background-color: #4f46e5;
+    background: var(--gradient-main);
     flex-direction: column;
     width: 100%;
     display: none;
-    padding: 10px 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    backdrop-filter: var(--frosted-blur);
+    -webkit-backdrop-filter: var(--frosted-blur);
   }
 
   .navbar-links.open {

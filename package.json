@@ -11,17 +11,23 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
     "axios": "^1.10.0",
     "bcryptjs": "^3.0.2",
+    "chart.js": "^4.5.0",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.1",
     "multer": "^2.0.1",
+    "node-fetch": "^3.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3"
+    "react-router-dom": "^7.6.3",
+    "react-toastify": "^11.0.5",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

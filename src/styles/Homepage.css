@@ -1,17 +1,17 @@
-/* Homepage.css - Dark Mode Styling */
+/* Homepage.css - Frosted Gradient Dark Theme */
 
 body {
-  background-color: #121212;
-  color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .homepage {
-  padding: 2rem;
+  padding: 2.5rem 1rem;
   min-height: 100vh;
-  background-color: #121212;
+  background-color: var(--color-bg);
 }
 
 .homepage-content {
@@ -20,54 +20,68 @@ body {
 }
 
 .homepage-content h1 {
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 .homepage-content input[type="text"] {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #1e1e1e;
-  color: #ffffff;
-  margin-bottom: 1.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+  color: var(--color-text-primary);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.homepage-content input[type="text"]::placeholder {
-  color: #aaa;
+.homepage-content input[type="text"]:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background-color: #232842;
+}
+
+.homepage-content input::placeholder {
+  color: var(--color-text-secondary);
 }
 
 .project-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
 .project-list a {
-  background-color: #1f1f1f;
-  border-radius: 10px;
+  background: var(--frosted-bg);
+  backdrop-filter: var(--frosted-blur);
+  -webkit-backdrop-filter: var(--frosted-blur);
+  border-radius: var(--radius-md);
   padding: 1.5rem;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color-text-primary);
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
 }
 
 .project-list a:hover {
-  background-color: #272727;
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #6366f1;
 }
 
 .project-list h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 0.8rem;
-  color: #fff;
+  color: var(--color-text-primary);
+  font-weight: 500;
 }
 
 .project-list p {
-  font-size: 0.9rem;
-  color: #cccccc;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
 }

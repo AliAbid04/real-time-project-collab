@@ -19,7 +19,6 @@ const Navbar = () => {
         </Link>
 
         <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
-          <Link to="/chat">Chat</Link>
           <Link to="/addproject">New Project</Link>
 
           <button onClick={handleLogout} className="logout-btn">
