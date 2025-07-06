@@ -1,0 +1,106 @@
+/* AddProject.css - Frosted Gradient Theme */
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.add-project-container {
+  max-width: 640px;
+  margin: 3rem auto;
+  background: var(--frosted-bg);
+  backdrop-filter: var(--frosted-blur);
+  -webkit-backdrop-filter: var(--frosted-blur);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease-in-out;
+}
+
+.add-project-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-text-primary);
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.add-project-container form input[type="text"],
+.add-project-container form textarea,
+.add-project-container form input[type="email"],
+.add-project-container form input[type="file"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+  color: var(--color-text-primary);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.add-project-container form input:focus,
+.add-project-container form textarea:focus {
+  outline: none;
+  border-color: #7c3aed;
+  background-color: #22263b;
+}
+
+.add-project-container form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.add-project-container .email-list label {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.add-project-container .add-email-btn {
+  background-color: #363f63;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.add-project-container .add-email-btn:hover {
+  background-color: #4f5e87;
+}
+
+.add-project-container form button[type="submit"] {
+  background: var(--gradient-main);
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.add-project-container form button[type="submit"]:hover {
+  background: var(--gradient-hover);
+}
+
+.project-details-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin-top: 1rem;
+  box-shadow: var(--shadow-md);
+}
