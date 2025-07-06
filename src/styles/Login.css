@@ -1,74 +1,127 @@
-/* Login.css - Dark Mode Styling */
+/* Login.css - Dark Frosted Purple Theme */
 
 body {
-  background-color: #121212;
-  color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  background-color: #0f0f1b;
+  font-family: 'Inter', sans-serif;
+  color: #f4f4f4;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
+/* 🔮 Dynamic background animation (same as Register) */
+.animated-bg {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1c1c2b, #0f0f1b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.animated-bg::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.5), transparent 60%);
+  filter: blur(120px);
+  top: -100px;
+  right: -100px;
+  z-index: 1;
+}
+
+/* 🧊 Frosted glass login card */
 .login-container {
-  max-width: 400px;
-  margin: 100px auto;
-  background-color: #1f1f1f;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 2rem;
+  margin: 5rem auto;
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .login-container h2 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
+  font-size: 2rem;
+  font-weight: 600;
   color: #ffffff;
-  font-size: 1.8rem;
 }
 
 .login-container form {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
 }
 
 .login-container input[type="email"],
 .login-container input[type="password"] {
-  padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
   border-radius: 8px;
-  border: none;
-  background-color: #2a2a2a;
-  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #1a1a2e;
+  color: #f0f0f0;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  background-color: #232842;
 }
 
 .login-container input::placeholder {
-  color: #aaaaaa;
-}
-
-.login-container button {
-  padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #3b82f6;
-  color: #ffffff;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.login-container button:hover {
-  background-color: #2563eb;
-}
-
-.login-container p {
-  margin-top: 1rem;
-  color: #cccccc;
+  color: #9ca3af;
   font-size: 0.95rem;
 }
 
+.login-container button {
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.login-container button:hover {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+  transform: scale(1.02);
+}
+
+.login-container p {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #cccccc;
+}
+
 .login-container a {
-  color: #3b82f6;
+  color: #a78bfa;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .login-container a:hover {
+  color: #c4b5fd;
   text-decoration: underline;
 }
+
+/* Toast override (optional) */
+.Toastify__toast {
+  border-radius: 8px !important;
+  background: #1f1f2e !important;
+  color: #ffffff !important;
+}
+  

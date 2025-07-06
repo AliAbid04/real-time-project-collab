@@ -9,6 +9,21 @@ const Homepage = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
 
   useEffect(() => {
+  const fetchUser = async () => {
+    const token = localStorage.getItem("token");
+    const res = await fetch("http://localhost:5000/api/auth/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    setUser(data);
+
+  };
+
+  fetchUser();
+}, []);
+
+
+  useEffect(() => {
     const fetchProjects = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -25,7 +40,6 @@ const Homepage = () => {
     fetchProjects();
   }, []);
 
-  // 🔍 Filter projects when searchTerm changes
   useEffect(() => {
     const filtered = projects.filter(
       (project) =>
@@ -38,31 +52,28 @@ const Homepage = () => {
   return (
     <div className="homepage">
       <div className="homepage-content">
-        <h1 className="text-3xl font-bold mb-4">All Projects</h1>
+        <h1>All Projects</h1>
 
-        {/* 🔍 Search Input */}
-        <input
-          type="text"
-          placeholder="Search projects..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border p-2 w-full mb-4 rounded"
-        />
+        {/* 🔍 Search Input with Icon */}
+<div className="search-wrapper">
+  <span className="search-icon">🔍</span>
+  <input
+    type="text"
+    placeholder="Search projects..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
+</div>
 
-        <div className="project-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+        <div className="project-list">
           {filteredProjects.length === 0 ? (
             <p>No projects found.</p>
           ) : (
             filteredProjects.map((project) => (
-              <Link
-                to={`/projects/${project._id}`}
-                className="border p-4 rounded shadow hover:shadow-lg transition"
-                key={project._id}
-              >
-                <h3 className="font-semibold text-lg">{project.title}</h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  {project.description.slice(0, 100)}...
-                </p>
+              <Link to={`/projects/${project._id}`} className="project-card" key={project._id}>
+                <h3>{project.title}</h3>
+                <p>{project.description.slice(0, 100)}...</p>
               </Link>
             ))
           )}

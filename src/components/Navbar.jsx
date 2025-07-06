@@ -12,22 +12,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar glass">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
           TeamCollab
         </Link>
 
-        <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
-          <Link to="/chat">Chat</Link>
-          <Link to="/addproject">New Project</Link>
+        <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
+          <li>
+            <Link to="/addproject" className="nav-btn">
+              + New Project
+            </Link>
+          </li>
+          <li>
+            <button onClick={handleLogout} className="nav-btn" id="hehe">
+              Logout
+            </button>
+          </li>
+        </ul>
 
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
-          </button>
+        <div
+          className={`hamburger ${menuOpen ? "active" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-
-        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}></div>
       </div>
     </nav>
   );

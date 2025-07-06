@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "framer-motion";
+import {
+  FiEdit2,
+  FiTrash2,
+  FiFile,
+  FiMessageSquare,
+  FiArrowLeft,
+} from "react-icons/fi";
 import "./../styles/ProjectDetails.css";
 
 const ProjectDetails = () => {
   const { id } = useParams();
+  localStorage.setItem("projectId", id);
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [form, setForm] = useState({ title: "", description: "" });
-  const [file, setFile] = useState(null); // ✅ moved inside the component
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    inviteEmails: "",
+  });
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -22,14 +35,15 @@ const ProjectDetails = () => {
           }
         );
         setProject(res.data);
-        console.log("Loaded project:", res.data);
-
-        setForm({ title: res.data.title, description: res.data.description });
+        setForm({
+          title: res.data.title,
+          description: res.data.description,
+          inviteEmails: "",
+        });
       } catch (err) {
         console.error("Error fetching project:", err);
       }
     };
-
     fetchProject();
   }, [id]);
 
@@ -40,21 +54,25 @@ const ProjectDetails = () => {
   const handleUpdate = async () => {
     try {
       const token = localStorage.getItem("token");
-
       const formData = new FormData();
       formData.append("title", form.title);
       formData.append("description", form.description);
-      if (file) {
-        formData.append("file", file);
+
+      if (form.inviteEmails) {
+        const emails = form.inviteEmails
+          .split(",")
+          .map((email) => email.trim())
+          .filter((email) => email);
+        formData.append("inviteEmails", JSON.stringify(emails));
       }
+
+      if (file) formData.append("file", file);
 
       const res = await axios.put(
         `http://localhost:5000/api/projects/${id}`,
         formData,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
@@ -63,14 +81,13 @@ const ProjectDetails = () => {
       setEditMode(false);
     } catch (err) {
       console.error("Error updating project:", err);
-      alert("Update failed. Ask project owner to update it.");
+      alert("Update failed.");
     }
   };
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this project?"))
       return;
-
     try {
       const token = localStorage.getItem("token");
       await axios.delete(`http://localhost:5000/api/projects/${id}`, {
@@ -80,98 +97,163 @@ const ProjectDetails = () => {
       navigate("/");
     } catch (err) {
       console.error("Error deleting project:", err);
-      alert("Delete failed. Ask project owner to delete it.");
+      alert("Delete failed.");
     }
   };
 
   if (!project)
-    return <div className="project-details-container">Loading...</div>;
+    return (
+      <div className="project-details-bg">
+        <div className="project-details-container">
+          <div className="loading-spinner"></div>
+        </div>
+      </div>
+    );
 
   return (
-    <div className="project-details-container">
-      {editMode ? (
-        <div>
-          <input
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            className="border p-2 w-full mb-4"
-          />
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            className="border p-2 w-full mb-4"
-          />
-          <input
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            className="border p-2 w-full mb-4"
-          />
+    <div className="project-details-bg">
+      <motion.div
+        className="project-details-container"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+      >
+        <button onClick={() => navigate(-1)} className="back-btn">
+          <FiArrowLeft /> Back to Projects
+        </button>
 
-          <button
-            onClick={handleUpdate}
-            className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-          >
-            Save
-          </button>
-          <button
-            onClick={() => setEditMode(false)}
-            className="bg-gray-400 text-white px-4 py-2 rounded"
-          >
-            Cancel
-          </button>
-        </div>
-      ) : (
-        <div>
-          <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-          <p className="mb-4">{project.description}</p>
-
-          {/* ✅ Show Uploaded File if present */}
-          {project.file && (
-            <div className="mb-4">
-              <h4 className="font-semibold mb-2">Attached File:</h4>
-              {project.file.match(/\.(jpeg|jpg|png|gif)$/i) ? (
-                <img
-                  src={`http://localhost:5000${project.file}`}
-                  alt="Uploaded"
-                  className="max-w-full h-auto rounded shadow"
-                />
-              ) : (
-                <a
-                  href={`http://localhost:5000${project.file}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline"
-                >
-                  View File
-                </a>
-              )}
+        {editMode ? (
+          <div className="edit-form">
+            <h2 className="section-title">Edit Project</h2>
+            <input
+              type="text"
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              placeholder="Project Title"
+              className="styled-input"
+            />
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Project Description"
+              className="styled-textarea"
+            />
+            <input
+              type="text"
+              name="inviteEmails"
+              value={form.inviteEmails}
+              onChange={handleChange}
+              placeholder="Invite members (comma-separated emails)"
+              className="styled-input"
+            />
+            <div className="file-upload">
+              <label htmlFor="file-upload" className="file-upload-label">
+                <FiFile /> {file ? file.name : "Choose File"}
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                className="file-input"
+              />
             </div>
-          )}
+            <div className="btn-group">
+              <motion.button
+                onClick={handleUpdate}
+                className="btn purple"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiEdit2 /> Save Changes
+              </motion.button>
+              <motion.button
+                onClick={() => setEditMode(false)}
+                className="btn gray"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Cancel
+              </motion.button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="project-header">
+              <h1 className="project-title">{project.title}</h1>
+              <div className="project-meta">
+                <span>
+                  Created At: {new Date(project.createdAt).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
 
-          <button
-            onClick={() => setEditMode(true)}
-            className="bg-yellow-500 text-white px-4 py-2 rounded mr-2"
-          >
-            Edit
-          </button>
-          <button
-            onClick={handleDelete}
-            className="bg-red-600 text-white px-4 py-2 rounded"
-          >
-            Delete
-          </button>
-        </div>
-      )}
+            <div className="project-section">
+              <h3 className="section-title">Description</h3>
+              <p className="project-desc">{project.description}</p>
+            </div>
 
-      <div className="mt-6">
-        <div className="border rounded p-4 mb-4">
-          📊 Project Charts (Coming Soon)
-        </div>
-        <div className="border rounded p-4">📝 Kanban Board (Coming Soon)</div>
-      </div>
+            {project.file && (
+              <div className="project-section">
+                <h3 className="section-title">Attachments</h3>
+                <div className="project-media">
+                  {project.file.match(/\.(jpeg|jpg|png|gif)$/i) ? (
+                    <motion.div
+                      className="media-container"
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <img
+                        src={`http://localhost:5000${project.file}`}
+                        alt="Project attachment"
+                        className="project-image"
+                      />
+                    </motion.div>
+                  ) : (
+                    <a
+                      href={`http://localhost:5000${project.file}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                    >
+                      <FiFile /> Download Attachment
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+
+            <div className="btn-group">
+              <motion.button
+                onClick={() => setEditMode(true)}
+                className="btn yellow"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiEdit2 /> Edit Project
+              </motion.button>
+              <motion.button
+                onClick={() =>
+                  navigate(`/realtime?me=${localStorage.getItem("userId")}`)
+                }
+                className="btn blue"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiMessageSquare /> Tasks & Chat
+              </motion.button>
+              <motion.button
+                onClick={handleDelete}
+                className="btn red"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiTrash2 /> Delete Project
+              </motion.button>
+            </div>
+          </>
+        )}
+      </motion.div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import Project from "../models/Project.js";
 
+// CREATE PROJECT
 export const createProject = async (req, res) => {
   const { title, description, inviteEmails } = req.body;
   const creatorId = req.user?.id;
@@ -10,9 +11,7 @@ export const createProject = async (req, res) => {
   if (!title) return res.status(400).json({ message: "Title is required" });
 
   try {
-    // If inviteEmails is a string (from form data), parse it to array
     const inviteList = typeof inviteEmails === 'string' ? JSON.parse(inviteEmails) : inviteEmails || [];
-
     const invitedUsers = await User.find({ email: { $in: inviteList } });
     const invitedUserIds = invitedUsers.map(u => u._id);
     const members = [creatorId, ...invitedUserIds];
@@ -32,13 +31,10 @@ export const createProject = async (req, res) => {
   }
 };
 
-
-
+// GET PROJECTS
 export const getProjects = async (req, res) => {
   try {
-    const projects = await Project.find({
-      members: req.user.id,
-    });
+    const projects = await Project.find({ members: req.user.id });
     res.json(projects);
   } catch (err) {
     console.error("Error fetching projects:", err);
@@ -46,12 +42,17 @@ export const getProjects = async (req, res) => {
   }
 };
 
+// GET PROJECT BY ID
 export const getProjectById = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.id).populate("members", "email");
+    const project = await Project.findById(req.params.id)
+      .populate("members", "email name")
+      .populate("createdBy", "name email");
+
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }
+
     res.json(project);
   } catch (err) {
     console.error("Error fetching project:", err.message);
@@ -59,10 +60,7 @@ export const getProjectById = async (req, res) => {
   }
 };
 
-// Update (Edit) Project
-
-
-// Delete Project
+// DELETE PROJECT
 export const deleteProject = async (req, res) => {
   const { id } = req.params;
 
@@ -85,6 +83,7 @@ export const deleteProject = async (req, res) => {
   }
 };
 
+// UPDATE PROJECT (add new members via inviteEmails)
 export const updateProject = async (req, res) => {
   const { id } = req.params;
   const { title, description, inviteEmails } = req.body;
@@ -100,10 +99,27 @@ export const updateProject = async (req, res) => {
       return res.status(403).json({ message: "Unauthorized to edit this project" });
     }
 
-    project.title = title || project.title;
-    project.description = description || project.description;
-    project.inviteEmails = inviteEmails || project.inviteEmails;
+    // Update title/description
+    if (title) project.title = title;
+    if (description) project.description = description;
 
+    // Add new members
+    if (inviteEmails) {
+      const inviteList = typeof inviteEmails === "string"
+        ? JSON.parse(inviteEmails)
+        : inviteEmails;
+
+      const invitedUsers = await User.find({ email: { $in: inviteList } });
+      const invitedUserIds = invitedUsers.map(u => u._id.toString());
+
+      invitedUserIds.forEach(uid => {
+        if (!project.members.map(id => id.toString()).includes(uid)) {
+          project.members.push(uid);
+        }
+      });
+    }
+
+    // Upload file
     if (req.file) {
       project.file = `/uploads/${req.file.filename}`;
     }
@@ -115,9 +131,3 @@ export const updateProject = async (req, res) => {
     res.status(500).json({ message: "Server error while updating project" });
   }
 };
-
-
-
-
-
-
