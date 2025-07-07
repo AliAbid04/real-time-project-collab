@@ -48,3 +48,19 @@ export const login = async (req, res) => {
   }
 };
 
+
+// controllers/authController.js
+
+
+// ✅ GET /api/auth/me
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json(user);
+  } catch (err) {
+    console.error("Get Me error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};

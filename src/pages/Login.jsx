@@ -25,8 +25,10 @@ const Login = () => {
     
     const { token, user } = res.data; // ✅ extract user
     localStorage.setItem("token", token);
+    localStorage.setItem("userId", user._id);
+    const currentUserId = localStorage.getItem("userId");
 
-    console.log("Logged in user ID:", user._id);
+    console.log("Logged in user ID:", currentUserId);
 
     toast.success("Login successful! Redirecting...");
     setTimeout(() => navigate("/"), 2000);
